@@ -1,0 +1,89 @@
+---
+title: "Análisis y simulación de la dinámica poblacional de los hipopótamos en Colombia"
+author: "Brittany Jiménez Calvo"
+format:
+  typst:
+    fontsize: 12pt
+    geometry: margin=2.54cm
+    linestretch: 1.5
+    titlepage: false
+editor: visual
+---
+
+# Introducción y objetivo
+
+En la década de 1980, el narcotraficante Pablo Escobar importó cuatro hipopótamos (Hippopotamus amphibius) a su Hacienda Nápoles, ubicada en Colombia. Tras su fallecimiento en 1993, los hipopótamos permanecieron en la propiedad por la dificultad de trasladarlos a una reserva natural.
+
+## Pregunta de investigación
+
+¿Cómo podría variar el crecimiento poblacional de los hipopótamos en Colombia bajo distintos escenarios de control poblacional?
+
+## Objetivo general
+
+Analizar y simular, mediante el lenguaje de programación R, la dinámica poblacional de los hipopótamos en Colombia, comparando distintas estrategias hipotéticas de manejo.
+
+# Datos e insumos
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+#| include: false
+source("cod/01_preparacion_datos.R")
+```
+
+# Metodología
+
+# Resultados
+
+## Análisis exploratorio de datos
+
+```{r}
+#| include: false
+grupos |> 
+  summarise(
+    total_poblacion = sum(estimacion_central)
+  )
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+ggplot(grupos, aes(x = estimacion_central, y = reorder(grupo, estimacion_central))) +
+  geom_col(fill = "skyblue4") +
+  labs(
+    title = "Nápoles concentra la mayoría de los\nhipopótamos estimados",
+    x = "Número estimado de hipopótamos",
+    y = "Grupo poblacional",
+    caption = "Fuente: Moreno-Arias et al. (2024).") +
+  theme_minimal() +
+  geom_text(aes(label = estimacion_central), hjust = -0.2) +
+  scale_x_continuous(limits = c(0, 135))
+```
+
+A partir del gráfico, se observa que Nápoles es el grupo con mayor población estimada de hipopótamos, con aproximadamente 117 individuos. Le sigue Río Cocorná, con una estimación de 31 individuos. Esta diferencia evidencia una distribución poblacional desigual entre los siete grupos estudiados, donde Nápoles concentra la mayor parte de los hipopótamos estimados.
+
+```{r}
+#| include: false
+grupos |> 
+  mutate(
+    porcentaje_poblacion = (estimacion_central/sum(estimacion_central)) * 100,
+    diferencia = estimacion_central - observados
+  ) |> 
+  summarise(
+    total_observados = sum(observados),
+    total_estimados = sum(estimacion_central),
+    diferencia_total = total_estimados - total_observados
+  )
+```
+
+# Conclusiones
+
+# Referencias
