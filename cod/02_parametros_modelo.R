@@ -115,6 +115,6 @@ tabla_edades <- tabla_edades |>
     mortalidad_machos = 1 - supervivencia_machos
   )
 
-sum(is.na(tabla_edades$supervivencia_machos))
-sum(is.na(tabla_edades$supervivencia_hembras))
+length(tabla_edades$edad)
 sum(is.na(tabla_edades$fecundidad))
+max(tabla_edades$fecundidad)
