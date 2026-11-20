@@ -4,7 +4,7 @@
 library(dplyr)
 library(ggplot2)
 library(gganimate)
-source("cod/02_parametros_modelo.R")
+source("config/02_parametros_modelo.R")
 
 # Hacemos un modelo base sin intervención
 
@@ -362,10 +362,10 @@ if (!isTRUE(getOption("knitr.in.progress"))) {
     renderer = gifski_renderer()
   )
   
-  dir.create("figuras", showWarnings = FALSE)
+  dir.create("res", showWarnings = FALSE)
   
   anim_save(
-    "figuras/hipopotamos_escenarios.gif",
+    "res/hipopotamos_escenarios.gif",
     animation = animacion
   )
 }

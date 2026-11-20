@@ -36,7 +36,7 @@ print(grafico_grupos)
 dir.create("figuras", showWarnings = FALSE)
 
 ggsave(
-  "figuras/analisis_exploratorio.png",
+  "res/analisis_exploratorio.png",
   plot = grafico_grupos,
   width = 12,
   height = 7,
