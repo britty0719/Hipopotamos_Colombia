@@ -1,5 +1,15 @@
-.Rproj.user
+# Archivos temporales de R y RStudio
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
 .quarto/
+# Datos confidenciales
+data/confidencial/
+# Credenciales
+config/credenciales.yml
+.Renviron
+# Archivos temporales del sistema
+Thumbs.db
+.DS_Store
+desktop.ini
