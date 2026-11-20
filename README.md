@@ -1,7 +1,5 @@
 # Análisis y simulación de la dinámica poblacional de los hipopótamos en Colombia
 
-# Análisis y simulación de la dinámica poblacional de los hipopótamos en Colombia
-
 ## Descripción del proyecto
 
 Este proyecto analiza la dinámica poblacional de los hipopótamos (*Hippopotamus amphibius*) introducidos en Colombia, una especie exótica invasora que representa desafíos para la conservación de la biodiversidad y la gestión ambiental.
@@ -29,11 +27,16 @@ Los resultados son proyecciones hipotéticas y no predicciones exactas de la pob
 
 ## Estructura del repositorio
 
-- `cod/`: scripts de R para preparación de datos, definición de parámetros y simulación.
-- `data/`: datos utilizados en el análisis exploratorio.
-- `figuras/`: gráficos y animaciones generados durante el proyecto.
-- `Individual_Jimenez_HerramientasDatosI_2026.qmd`: informe reproducible elaborado con Quarto.
-- `Individual_Jimenez_HerramientasDatosI_2026.pdf`: versión final del informe.
+- `cod/`: scripts de R para preparación de datos, simulación y visualización.
+- `data/`: datos de entrada utilizados en el análisis.
+- `info/`: documentación y referencias del proyecto.
+- `config/`: parámetros demográficos utilizados por el modelo.
+- `res/`: gráficos y animaciones generados mediante los scripts.
+- `Individual_Jiménez_HerramientasDatosI_2026.qmd`: informe reproducible en Quarto.
+- `Individual_Jiménez_HerramientasDatosI_2026.pdf`: versión PDF del informe.
+- `README.md`: descripción del proyecto e instrucciones de ejecución.
+
+Cada carpeta contiene un archivo `README.md` con información sobre su propósito.
 
 ## Herramientas utilizadas
 
