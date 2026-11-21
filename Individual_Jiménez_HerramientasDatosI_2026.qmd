@@ -126,7 +126,7 @@ $$
 Donde $N_{a,t}^{(s)}$ representa los individuos de edad $a$, sexo $s$ y año $t$; $p_a^{(s)}$ es su tasa de supervivencia; $H_{a,t}^{F}$ corresponde a las hembras fértiles y $f_a$, a la fecundidad por edad. Se asignó el 50 % de los nacimientos a cada sexo.
 
 **Escenarios de manejo.** 
-Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 10 hembras anuales, entre 5 y 30 años; eutanasia aplicada hasta a 30 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
+Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 10 hembras anuales, entre 5 y 30 años; eutanasia de hasta 30 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
 
 **Análisis.**
 Se compararon las proyecciones para 2026, 2030, 2040 y 2050 mediante tablas y gráficos elaborados con `ggplot2`. El modelo supone tasas biológicas constantes y no considera capacidad de carga, por lo que sus resultados son proyecciones condicionadas a los supuestos, no predicciones exactas.
@@ -245,7 +245,7 @@ El manejo combinado presenta la disminución más rápida, con aproximadamente 1
 
 La simulación permitió analizar cómo podría variar la población de hipopótamos en Colombia entre 2026 y 2050 bajo cuatro escenarios hipotéticos de manejo. Los resultados muestran que, sin intervención, la población mantendría un crecimiento sostenido, mientras que las medidas de control permitirían reducir su tamaño en diferentes magnitudes.
 
-La esterilización de hembras disminuyó considerablemente el crecimiento poblacional, pero no produjo la eliminación de la población durante el período estudiado. En contraste, la extracción de individuos y el manejo combinado permitieron alcanzar una población esperada de cero, siendo este último el escenario que presentó la reducción más rápida.
+La esterilización de hembras disminuyó considerablemente el crecimiento poblacional, pero no produjo la eliminación de la población durante el período estudiado. En contraste, la eutanasia simulada y el manejo combinado permitieron alcanzar una población esperada de cero, siendo este último el escenario que presentó la reducción más rápida.
 
 Finalmente, las proyecciones dependen de los parámetros biológicos y supuestos establecidos, por lo que no deben interpretarse como predicciones exactas. El modelo constituye una herramienta para comparar posibles efectos demográficos de distintas estrategias, sin evaluar su viabilidad económica, ambiental o social.
 
