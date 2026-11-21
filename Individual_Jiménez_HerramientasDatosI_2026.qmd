@@ -1,37 +1,72 @@
 ---
-title: "Análisis y simulación de la dinámica poblacional de los hipopótamos en Colombia"
-subtitle: "Proyecto individual — Herramientas de Ciencia de Datos I"
-author:
-  - name: "Brittany Jiménez Calvo"
-    affiliations:
-      - name: "Universidad de Costa Rica"
-        department: "Escuela de Matemática"
-date: "2026-11-09"
-date-format: "MMMM 'de' YYYY"
-lang: es
+editor: visual
 
 format:
-  typst:
+  pdf:
+    pdf-engine: lualatex
+    documentclass: article
     fontsize: 12pt
     mainfont: "Times New Roman"
-    margin:
-      x: 2.54cm
-      y: 2.54cm
-    linestretch: 1.5
-    titlepage: false
-    page-numbering: "1"
-    tbl-cap-location: top
+    sansfont: "Times New Roman"
+    papersize: letter
+    geometry:
+      - margin=2.54cm
+    toc: false
+    indent: true
+    number-sections: false
+    include-in-header:
+      text: |
+        \usepackage{titlesec}
 
-editor: visual
+        \titleformat{\subsection}
+        {\normalfont\fontsize{12}{14}\selectfont\bfseries}
+        {}{0pt}{}
+
+        \titlespacing*{\subsection}
+        {0pt}{8pt}{5pt}
+        \usepackage{float}
+        \usepackage{indentfirst}
+        \usepackage{setspace}
+        \setstretch{1.2}
+        \raggedbottom
+        \setlength{\parindent}{1.27cm}
+        \setlength{\parskip}{0pt}
+        \usepackage{sectsty}
+        \allsectionsfont{\normalfont\bfseries}
+        \sectionfont{\normalfont\bfseries}
+lang: es
+
+fig-cap-location: top
+tbl-cap-location: top
+
+crossref:
+  fig-title: "Figura"
+  tbl-title: "Tabla"
+  title-delim: ":"
+
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
 
-```{=typst}
-#set par(first-line-indent: (amount: 1.27cm, all: true))
+
+
+```{=latex}
+\begin{flushleft}
+\textbf{Universidad de Costa Rica}\\
+\textbf{Curso:} Herramientas de ciencias de datos 1\\
+\textbf{Estudiante:} Brittany Jiménez Calvo\\
+\textbf{Carné:} C5L654\\
+\textbf{Profesor:} Luis Juarez Potoy\\
+\textbf{Fecha:} 23 de noviembre de 2026\\[0.4cm]
+\textbf{Título del proyecto:} Análisis y simulación de la dinámica poblacional de los hipopótamos en Colombia
+\end{flushleft}
 ```
 
 
-# Introducción
+## Introducción
 
 En la década de 1980, Pablo Escobar introdujo cuatro hipopótamos (*Hippopotamus amphibius*) en su Hacienda Nápoles, ubicada en Colombia. Con el paso de los años, estos animales lograron reproducirse y dispersarse por la región del Magdalena Medio, dando origen a una población de hipopótamos fuera de su área de distribución natural (Subalusky et al., 2023).
 
@@ -41,9 +76,9 @@ En este contexto, el presente proyecto tiene como propósito analizar y simular,
 
 ## Objetivo general
 
-Analizar y simular, mediante el lenguaje de programación R, la dinámica poblacional de los hipopótamos en Colombia, comparando distintas estrategias hipotéticas de manejo.
+Analizar y simular la dinámica poblacional de los hipopótamos en Colombia, comparando distintas estrategias hipotéticas de manejo.
 
-# Datos e insumos
+## Datos e insumos
 
 Para la elaboración del proyecto se utilizaron datos provenientes de investigaciones científicas sobre la población de hipopótamos en Colombia. Las fuentes principales de estos datos fueron los estudios de Moreno-Arias et al. (2024) y Subalusky et al. (2023), los cuales aportaron información para el análisis exploratorio y la construcción del modelo poblacional, respectivamente.
 
@@ -51,7 +86,6 @@ Los datos de Moreno-Arias et al. (2024) identifican siete grupos poblacionales d
 
 Adicional a esto, se emplearon los parámetros biológicos descritos por Subalusky et al. (2023), destacando las tasas de supervivencia por edad y sexo, así como las tasas de fecundidad según la edad de las hembras. Estos parámetros constituyeron los principales insumos para simular el crecimiento poblacional anual de los hipopótamos.
 
-Los datos fueron organizados y procesados mediante el lenguaje de programación R, utilizando archivos CSV y funciones de los paquetes readr, dplyr y ggplot2. Se distinguieron los datos poblacionales observados y estimados de los parámetros biológicos utilizados en la simulación, debido a que cumplen funciones diferentes en el análisis.
 ```{r}
 #| include: false
 #| message: false
@@ -70,9 +104,11 @@ source("cod/03_modelo_poblacional.R")
 source("cod/01_preparacion_datos.R")
 ```
 
-# Metodología
+## Metodología
 
 Se desarrolló un modelo demográfico en R para simular la población de hipopótamos en Colombia entre 2026 y 2050. Se utilizaron datos de Moreno-Arias et al. (2024) para el análisis exploratorio y parámetros de supervivencia por edad y sexo y fecundidad de Subalusky et al. (2023) para las simulaciones.
+
+Los datos fueron organizados y procesados mediante el lenguaje de programación R, utilizando archivos CSV y funciones de los paquetes readr, dplyr y ggplot2. Se distinguieron los datos poblacionales observados y estimados de los parámetros biológicos utilizados en la simulación, debido a que cumplen funciones diferentes en el análisis.
 
 **Construcción del modelo.**
 La población se organizó por sexo y edades de 1 a 45 años. Para definir su distribución inicial, se simularon 100 ciclos anuales a partir de una población provisional uniforme y posteriormente se ajustó a 200 individuos en 2026, como supuesto de partida.
@@ -95,7 +131,7 @@ Se compararon cuatro condiciones: ausencia de intervención; esterilización per
 **Análisis.**
 Se compararon las proyecciones para 2026, 2030, 2040 y 2050 mediante tablas y gráficos elaborados con `ggplot2`. El modelo supone tasas biológicas constantes y no considera capacidad de carga, por lo que sus resultados son proyecciones condicionadas a los supuestos, no predicciones exactas.
 
-# Resultados
+## Resultados
 
 ## Análisis exploratorio de datos
 
@@ -115,6 +151,7 @@ grupos |>
 #| echo: false
 #| warning: false
 #| message: false
+#| fig-pos: H
 ggplot(grupos, aes(x = estimacion_central, y = reorder(grupo, estimacion_central))) +
   geom_col(fill = "skyblue4", width = 0.7) +
    geom_text(
@@ -129,20 +166,21 @@ ggplot(grupos, aes(x = estimacion_central, y = reorder(grupo, estimacion_central
   labs(
     title = "Nápoles concentra la mayoría de los hipopótamos estimados",
     x = "Número estimado de hipopótamos",
-    y = NULL,
-    caption = "Fuente: Moreno-Arias et al. (2024).") +
+    y = "Grupo poblacional"
+    ) +
   theme_minimal(base_size = 11) +
   theme(
-    plot.title = element_text(face = "bold"),
-    plot.caption = element_text(size = 8)
+    plot.title = element_text(face = "bold")
   )
 ```
+*Nota.* Elaboración propia con datos de Moreno-Arias et al. (2024).
+
 
 En la @fig-grupos se muestra la distribución estimada de los hipopótamos entre los siete grupos poblacionales identificados por Moreno-Arias et al. (2024). Nápoles representa la mayor concentración, con 117 individuos, seguido por Río Cocorná, con 31. Los demás grupos registran poblaciones considerablemente menores, lo que evidencia una distribución desigual de los hipopótamos en las áreas estudiadas.
 
 Esta concentración es relevante para el análisis, pues permite identificar los grupos que representan una mayor proporción de la población estimada. Sin embargo, el modelo desarrollado posteriormente considera la población total y no incorpora diferencias espaciales entre grupos.
 
-## Simulación de escenarios de manejo
+### Simulación de escenarios de manejo
 
 ```{r}
 #| label: tbl-escenarios
@@ -163,27 +201,47 @@ knitr::kable(
   digits = 2
 )
 ```
+*Nota.* Poblaciones esperadas obtenidas mediante el modelo de simulación desarrollado en R. Los valores corresponden a escenarios hipotéticos.
+
+
 La @tbl-escenarios presenta los resultados de la simulación del cambio poblacional bajo cuatro escenarios distintos, en los años seleccionados. 
+
+
+
+
 ```{r}
 #| label: fig-escenarios
 #| fig-cap: "Proyección poblacional de hipopótamos bajo cuatro escenarios de manejo, 2026–2050"
+#| fig-cap-location: top
+#| fig-pos: H
 #| fig-width: 7
 #| fig-height: 4
+#| out-width: 100%
 #| echo: false
 #| warning: false
 #| message: false
 
-grafico_escenarios
+grafico_escenarios +
+  labs(
+    caption = "Nota. Elaboración propia con parámetros de Subalusky et al. (2023)."
+  ) +
+  theme(
+    plot.title = element_text(size = 11),
+    plot.subtitle = element_text(size = 9),
+    plot.caption = element_text(size = 8, hjust = 0),
+    legend.text = element_text(size = 8)
+  )
 ```
+
 
 Como se observa en la @fig-escenarios, sin intervención la población presenta un crecimiento sostenido, pasando de 200 individuos en 2026 a aproximadamente 1816 en 2050.
 
 La esterilización de hasta 10 hembras anuales reduce considerablemente el crecimiento, aunque no logra eliminar la población durante el período estudiado, alcanzando aproximadamente 184 individuos en 2050. Por otra parte, la extracción de hasta 30 hipopótamos anuales permite reducir la población hasta cero antes de 2040, bajo los supuestos del modelo.
 
-El escenario combinado presenta la disminución más rápida, con aproximadamente 107 individuos en 2030, frente a 137 en el escenario de extracción. Esto sugiere que la aplicación conjunta de ambas medidas podría acelerar el control poblacional, aunque los resultados dependen de las condiciones hipotéticas establecidas y no representan una evaluación de su viabilidad práctica.
+El escenario combinado presenta la disminución más rápida, alcanzando una población eperada de cero en 2034, mientras que la extracción individual lo hace en 2037. Esto sugiere que la aplicación conjunta de ambas medidas podría acelerar el control poblacional, aunque los resultados dependen de las condiciones hipotéticas establecidas y no representan una evaluación de su viabilidad práctica.
 
 
-# Conclusiones
+## Conclusiones
 
 La simulación permitió analizar cómo podría variar la población de hipopótamos en Colombia entre 2026 y 2050 bajo cuatro escenarios hipotéticos de manejo. Los resultados muestran que, sin intervención, la población mantendría un crecimiento sostenido, mientras que las medidas de control permitirían reducir su tamaño en diferentes magnitudes.
 
@@ -191,19 +249,20 @@ La esterilización de hembras disminuyó considerablemente el crecimiento poblac
 
 Finalmente, las proyecciones dependen de los parámetros biológicos y supuestos establecidos, por lo que no deben interpretarse como predicciones exactas. El modelo constituye una herramienta para comparar posibles efectos demográficos de distintas estrategias, sin evaluar su viabilidad económica, ambiental o social.
 
+```{=latex}
+\clearpage
+```
 
 ## Referencias
 
-
-```{=typst}
-#set par(
-  first-line-indent: 0cm,
-  hanging-indent: 1.27cm
-)
-```
+\begingroup
+\setlength{\parindent}{-1.27cm}
+\setlength{\leftskip}{1.27cm}
 
 Ministerio de Ambiente y Desarrollo Sostenible. (2026, 13 de abril). *Gobierno activa plan de choque para frenar expansión y crecimiento poblacional de hipopótamos*. https://www.minambiente.gov.co/gobierno-activa-plan-de-choque-integral-para-frenar-expansion-y-crecimiento-poblacion-de-hipopotamos-en-colombia/
 
 Moreno-Arias, R., Nova-León, L. J., García-Loaiza, L. M., Baptiste, M. P., Montenegro-Díaz, O. L., López Arévalo, H. F., Loaiza, C., Santamaría-Castiblanco, D., & Diaz-Rodríguez, G. (2024). Un megaherbívoro invasor al descubierto: Ecología de la población de hipopótamos (*Hippopotamus amphibius*) en Colombia. *Revista de la Academia Colombiana de Ciencias Exactas, Físicas y Naturales, 48*(188), 564–581. https://doi.org/10.18257/raccefyn.2647
 
 Subalusky, A. L., Sethi, S. A., Anderson, E. P., Jiménez, G., Echeverri-Lopez, D., García-Restrepo, S., Nova-León, L. J., Reátiga-Parrish, J. F., Post, D. M., & Rojas, A. (2023). Rapid population growth and high management costs have created a narrow window for control of introduced hippos in Colombia. *Scientific Reports, 13*, Article 6193. https://doi.org/10.1038/s41598-023-33028-y
+
+\endgroup
