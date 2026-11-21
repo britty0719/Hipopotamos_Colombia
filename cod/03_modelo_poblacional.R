@@ -165,7 +165,7 @@ for(i in 2027:2050){
   )
 }
 
-# Escenario de extracción
+# Escenario de eutanasia
 
 extraer_hipopotamos <- function(poblacion, cantidad_anual){
   total_disponibles <- sum(
@@ -222,7 +222,7 @@ for(i in 2027:2050){
   )
 }
 
-# Escenario combinado: esterilización + extracción
+# Escenario combinado: esterilización + eutanasia
 
 poblacion_actual_combinado <- poblacion_inicial_control
 
@@ -242,7 +242,7 @@ for(i in 2027:2050){
     poblacion_actual_combinado,
     cantidad_anual = 10)
   
-  # Después extraemos hasta 30 hipopótamos por año
+  # Después se aplica la eutanasia hasta 30 hipopótamos por año
   poblacion_actual_combinado <- extraer_hipopotamos(
     poblacion_actual_combinado,
     cantidad_anual = 30
@@ -272,7 +272,7 @@ for(i in 2027:2050){
 comparacion_escenarios <- bind_rows(
   historial |> mutate(escenario = "Sin intervención"),
   historial_esterilizacion |> mutate(escenario = "Esterilización"),
-  historial_extraccion |> mutate(escenario = "Extracción"),
+  historial_extraccion |> mutate(escenario = "Eutanasia"),
   historial_combinado |> mutate(escenario = "Combinado")
 ) |>
   select(anio, escenario, poblacion_total)
@@ -303,19 +303,19 @@ grafico_escenarios <- ggplot(
     values = c(
       "Sin intervención" = "#D95F02",
       "Esterilización" = "#7570B3",
-      "Extracción" = "#1B9E77",
+      "Eutanasia" = "#1B9E77",
       "Combinado" = "#E7298A"
     ),
     breaks = c(
       "Sin intervención",
       "Esterilización",
-      "Extracción",
+      "Eutanasia",
       "Combinado"
     ),
     labels = c(
       "Sin intervención",
       "Esterilización (10 hembras/año)",
-      "Extracción (30 individuos/año)",
+      "Eutanasia (30 individuos/año)",
       "Manejo combinado"
     )
   ) +
@@ -456,9 +456,9 @@ extraccion_30 <- simular_escenario(200, 0, 30)
 extraccion_33 <- simular_escenario(200, 0, 33)
 
 sensibilidad_extraccion <- bind_rows(
-  extraccion_10 |> mutate(escenario = "Extracción 10"),
-  extraccion_30 |> mutate(escenario = "Extracción 30"),
-  extraccion_33 |> mutate(escenario = "Extracción 33")
+  extraccion_10 |> mutate(escenario = "Eutanasia 10"),
+  extraccion_30 |> mutate(escenario = "Eutanasia 30"),
+  extraccion_33 |> mutate(escenario = "Eutanasia 33")
 )
 
 sensibilidad_extraccion |>
