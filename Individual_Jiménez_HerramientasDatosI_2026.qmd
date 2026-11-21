@@ -72,7 +72,7 @@ En la década de 1980, Pablo Escobar introdujo cuatro hipopótamos (*Hippopotamu
 
 El crecimiento de esta población ha generado preocupación debido a sus posibles efectos sobre los ecosistemas acuáticos, la biodiversidad nativa y la seguridad de las comunidades cercanas. Ante esta problemática, en 2022 el Gobierno de Colombia declaró oficialmente al hipopótamo como especie exótica invasora (Moreno-Arias et al., 2024). Posteriormente, el Ministerio de Ambiente y Desarrollo Sostenible (2026) informó que la población superaba los 200 individuos, lo que evidencia la necesidad de evaluar alternativas para su manejo y control.
 
-En este contexto, el presente proyecto tiene como propósito analizar y simular, mediante el lenguaje de programación R, la dinámica poblacional de los hipopótamos en Colombia, utilizando parámetros biológicos obtenidos de fuentes científicas. Para ello, se comparan cuatro escenarios hipotéticos de manejo: crecimiento sin intervención, esterilización de hembras, extracción de individuos y aplicación combinada de ambas medidas. De esta manera, se busca explorar cómo podría variar el tamaño de la población entre 2026 y 2050 bajo los supuestos establecidos en el modelo.
+En este contexto, el presente proyecto tiene como propósito analizar y simular, mediante el lenguaje de programación R, la dinámica poblacional de los hipopótamos en Colombia, utilizando parámetros biológicos obtenidos de fuentes científicas. Para ello, se comparan cuatro escenarios hipotéticos de manejo: crecimiento sin intervención, esterilización de hembras, eutanasia y aplicación combinada de ambas medidas. De esta manera, se busca explorar cómo podría variar el tamaño de la población entre 2026 y 2050 bajo los supuestos establecidos en el modelo.
 
 ## Objetivo general
 
@@ -126,7 +126,7 @@ $$
 Donde $N_{a,t}^{(s)}$ representa los individuos de edad $a$, sexo $s$ y año $t$; $p_a^{(s)}$ es su tasa de supervivencia; $H_{a,t}^{F}$ corresponde a las hembras fértiles y $f_a$, a la fecundidad por edad. Se asignó el 50 % de los nacimientos a cada sexo.
 
 **Escenarios de manejo.** 
-Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 10 hembras anuales, entre 5 y 30 años; extracción de hasta 30 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
+Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 10 hembras anuales, entre 5 y 30 años; eutanasia aplicada hasta a 30 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
 
 **Análisis.**
 Se compararon las proyecciones para 2026, 2030, 2040 y 2050 mediante tablas y gráficos elaborados con `ggplot2`. El modelo supone tasas biológicas constantes y no considera capacidad de carga, por lo que sus resultados son proyecciones condicionadas a los supuestos, no predicciones exactas.
@@ -194,7 +194,7 @@ knitr::kable(
     "Año",
     "Sin intervención",
     "Esterilización",
-    "Extracción",
+    "Eutanasia",
     "Combinado"
   ),
   align = c("c", "r", "r", "r", "r"),
@@ -236,9 +236,9 @@ grafico_escenarios +
 
 Como se observa en la @fig-escenarios, sin intervención la población presenta un crecimiento sostenido, pasando de 200 individuos en 2026 a aproximadamente 1816 en 2050.
 
-La esterilización de hasta 10 hembras anuales reduce considerablemente el crecimiento, aunque no logra eliminar la población durante el período estudiado, alcanzando aproximadamente 184 individuos en 2050. Por otra parte, la extracción de hasta 30 hipopótamos anuales permite reducir la población hasta cero antes de 2040, bajo los supuestos del modelo.
+La esterilización de hasta 10 hembras anuales reduce considerablemente el crecimiento, aunque no logra eliminar la población durante el período estudiado, alcanzando aproximadamente 184 individuos en 2050. Por su parte, el escenario hipotético de eutanasia de hasta 30 hipopótamos anuales permite reducir la población hasta cero antes de 2040, bajo los supuestos del modelo.
 
-El escenario combinado presenta la disminución más rápida, alcanzando una población eperada de cero en 2034, mientras que la extracción individual lo hace en 2037. Esto sugiere que la aplicación conjunta de ambas medidas podría acelerar el control poblacional, aunque los resultados dependen de las condiciones hipotéticas establecidas y no representan una evaluación de su viabilidad práctica.
+El manejo combinado presenta la disminución más rápida, con aproximadamente 107 individuos en 2030, frente a 137 en el escenario de eutanasia. Bajo los supuestos del modelo, alcanza una población esperada de cero en 2034. Sin embargo, estos resultados describen efectos demográficos y no permiten determinar la viabilidad operativa, económica o ética de las intervenciones.
 
 
 ## Conclusiones
@@ -266,3 +266,9 @@ Moreno-Arias, R., Nova-León, L. J., García-Loaiza, L. M., Baptiste, M. P., Mon
 Subalusky, A. L., Sethi, S. A., Anderson, E. P., Jiménez, G., Echeverri-Lopez, D., García-Restrepo, S., Nova-León, L. J., Reátiga-Parrish, J. F., Post, D. M., & Rojas, A. (2023). Rapid population growth and high management costs have created a narrow window for control of introduced hippos in Colombia. *Scientific Reports, 13*, Article 6193. https://doi.org/10.1038/s41598-023-33028-y
 
 \endgroup
+
+# Anexos
+
+El código fuente, los datos utilizados, los parámetros del modelo y los resultados gráficos de la simulación se encuentran disponibles en el siguiente repositorio:
+
+[**Hipopotamos_Colombia — Repositorio del proyecto**](https://github.com/britty0719/Hipopotamos_Colombia)
