@@ -22,10 +22,9 @@ grafico_grupos <- ggplot(
     expand = expansion(mult = c(0, 0.12))
   ) +
   labs(
-    title = "Distribución estimada de hipopótamos por grupo",
+    title = "Nápoles concentra la mayoría de los hipopótamos estimados",
     x = "Número estimado de hipopótamos",
-    y = NULL,
-    caption = "Fuente: Moreno-Arias et al. (2024)."
+    y = "Grupo poblacional",
   ) +
   theme_minimal(base_size = 14)
 
@@ -33,7 +32,7 @@ grafico_grupos <- ggplot(
 print(grafico_grupos)
 
 # Guardarlo para Canva
-dir.create("figuras", showWarnings = FALSE)
+dir.create("res", showWarnings = FALSE)
 
 ggsave(
   "res/analisis_exploratorio.png",
