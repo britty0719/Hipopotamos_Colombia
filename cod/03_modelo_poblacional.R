@@ -149,7 +149,7 @@ historial_esterilizacion <- data.frame(
 
 for(i in 2027:2050){
   poblacion_actual_control = 
-    esterilizar_hembras(poblacion_actual_control, cantidad_anual = 10)
+    esterilizar_hembras(poblacion_actual_control, cantidad_anual = 20)
   poblacion_actual_control =
   cambio_poblacional_control(poblacion_actual_control)
   registro_anual <- data.frame(
@@ -206,7 +206,7 @@ historial_extraccion <- data.frame(
 
 for(i in 2027:2050){
   poblacion_actual_extraccion = 
-    extraer_hipopotamos(poblacion_actual_extraccion, cantidad_anual = 30)
+    extraer_hipopotamos(poblacion_actual_extraccion, cantidad_anual = 20)
   poblacion_actual_extraccion =
     cambio_poblacional_control(poblacion_actual_extraccion)
   registro_anual <- data.frame(
@@ -237,15 +237,16 @@ historial_combinado <- data.frame(
 
 for(i in 2027:2050){
   
-  # Primero esterilizamos hasta 10 hembras por año
-  poblacion_actual_combinado <- esterilizar_hembras(
-    poblacion_actual_combinado,
-    cantidad_anual = 10)
-  
-  # Después se aplica la eutanasia hasta 30 hipopótamos por año
+  # Primero se aplica eutanasia hasta a 20 individuos
   poblacion_actual_combinado <- extraer_hipopotamos(
     poblacion_actual_combinado,
-    cantidad_anual = 30
+    cantidad_anual = 20
+  )
+  
+  # Después se esterilizan hasta 20 hembras fértiles
+  poblacion_actual_combinado <- esterilizar_hembras(
+    poblacion_actual_combinado,
+    cantidad_anual = 20
   )
   
   # Calculamos nacimientos, supervivencia y envejecimiento
@@ -314,8 +315,8 @@ grafico_escenarios <- ggplot(
     ),
     labels = c(
       "Sin intervención",
-      "Esterilización (10 hembras/año)",
-      "Eutanasia (30 individuos/año)",
+      "Esterilización (20 hembras/año)",
+      "Eutanasia (20 individuos/año)",
       "Manejo combinado"
     )
   ) +
@@ -323,8 +324,7 @@ grafico_escenarios <- ggplot(
     breaks = seq(2026, 2050, by = 4)
   ) +
   labs(
-    title = "Proyección de hipopótamos en Colombia",
-    subtitle = "Comparación de escenarios de manejo, 2026–2050",
+    subtitle = "Comparación de escenarios de manejo entre 2026 y 2050",
     x = "Año",
     y = "Población esperada",
     color = NULL,
@@ -345,8 +345,6 @@ grafico_escenarios <- ggplot(
 grafico_escenarios
 
 # Animación de la evolución poblacional
-# Solo se ejecuta al trabajar directamente en RStudio,
-# no cuando Quarto genera el informe.
 
 if (!isTRUE(getOption("knitr.in.progress"))) {
   
@@ -431,10 +429,13 @@ simular_escenario <- function(total_inicial, esterilizaciones_anuales,
     )
   )
   for (i in 2027:2050) {
-    poblacion_actual = esterilizar_hembras(poblacion_actual,
-                                                   cantidad_anual = esterilizaciones_anuales)
-    poblacion_actual = extraer_hipopotamos(poblacion_actual,
-                                               cantidad_anual = extracciones_anuales)
+    poblacion_actual <- extraer_hipopotamos(
+      poblacion_actual, cantidad_anual = extracciones_anuales
+    )
+    
+    poblacion_actual <- esterilizar_hembras(
+      poblacion_actual, cantidad_anual = esterilizaciones_anuales
+    )
     poblacion_actual = cambio_poblacional_control(poblacion_actual, parametros = parametros)
     registro_anual <- data.frame(
       anio = i,
@@ -451,17 +452,19 @@ simular_escenario <- function(total_inicial, esterilizaciones_anuales,
 
 # Sensibilidad a número de extracciones anuales
 
-extraccion_10 <- simular_escenario(200, 0, 10)
-extraccion_30 <- simular_escenario(200, 0, 30)
-extraccion_33 <- simular_escenario(200, 0, 33)
+eutanasia_10 <- simular_escenario(200, 0, 10)
+eutanasia_19 <- simular_escenario(200, 0, 19)
+eutanasia_20 <- simular_escenario(200, 0, 20)
+eutanasia_30 <- simular_escenario(200, 0, 30)
 
-sensibilidad_extraccion <- bind_rows(
-  extraccion_10 |> mutate(escenario = "Eutanasia 10"),
-  extraccion_30 |> mutate(escenario = "Eutanasia 30"),
-  extraccion_33 |> mutate(escenario = "Eutanasia 33")
+sensibilidad_eutanasia <- bind_rows(
+  eutanasia_10 |> mutate(escenario = "Eutanasia 10"),
+  eutanasia_19 |> mutate(escenario = "Eutanasia 19"),
+  eutanasia_20 |> mutate(escenario = "Eutanasia 20"),
+  eutanasia_30 |> mutate(escenario = "Eutanasia 30")
 )
 
-sensibilidad_extraccion |>
+sensibilidad_eutanasia |>
   filter(anio %in% c(2030, 2040, 2050)) |>
   select(anio, escenario, poblacion_total) |>
   arrange(anio, escenario)
@@ -514,11 +517,12 @@ esterilizacion_15 <- simular_escenario(200, 15, 0)
 esterilizacion_20 <- simular_escenario(200, 20, 0)
 
 sensibilidad_esterilizacion <- bind_rows(
-  esterilizacion_5 |> mutate(escenario = "Esterilización_5"),
-  esterilizacion_10 |> mutate(escenario = "Esterilización_10"),
-  esterilizacion_15 |> mutate(escenario = "Esterilización_15"),
-  esterilizacion_20 |> mutate(escenario = "Esterilización_20")
-  )
+  esterilizacion_5 |> mutate(escenario = "Esterilización 5"),
+  esterilizacion_10 |> mutate(escenario = "Esterilización 10"),
+  esterilizacion_15 |> mutate(escenario = "Esterilización 15"),
+  esterilizacion_20 |> mutate(escenario = "Esterilización 20")
+)
+
 sensibilidad_esterilizacion |>
   filter(anio %in% c(2030, 2040, 2050)) |>
   select(anio, escenario, poblacion_total) |>
