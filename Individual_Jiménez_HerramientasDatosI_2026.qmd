@@ -124,7 +124,7 @@ $$
 Donde $N_{a,t}^{(s)}$ representa los individuos de edad $a$, sexo $s$ y año $t$; $p_a^{(s)}$ es su tasa de supervivencia; $H_{a,t}^{F}$ corresponde a las hembras fértiles y $f_a$, a la fecundidad por edad. Se asignó el 50 % de los nacimientos a cada sexo.
 
 **Escenarios de manejo.** 
-Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 20 hembras anuales, entre 5 y 30 años; eutanasia de hasta 20 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
+Se compararon cuatro condiciones: ausencia de intervención; esterilización permanente de hasta 20 hembras anuales, entre 3 y 45 años; eutanasia de hasta 20 individuos anuales; y combinación de ambas medidas. Las intervenciones se distribuyeron proporcionalmente entre los grupos elegibles o disponibles y se aplicaron antes de la actualización demográfica anual.
 
 **Análisis.**
 Se compararon las proyecciones para 2026, 2030, 2040 y 2050 mediante tablas y gráficos elaborados con `ggplot2`. El modelo supone tasas biológicas constantes y no considera capacidad de carga, por lo que sus resultados son proyecciones condicionadas a los supuestos, no predicciones exactas.
@@ -232,9 +232,9 @@ grafico_escenarios +
 
 Como se observa en la @fig-escenarios, sin intervención la población presenta un crecimiento sostenido, pasando de 200 individuos en 2026 a aproximadamente 1816 en 2050.
 
-La esterilización de hasta 20 hembras anuales reduce considerablemente el crecimiento, aunque no logra eliminar la población durante el período estudiado, alcanzando aproximadamente 103 individuos en 2050. Por su parte, el escenario hipotético de eutanasia de hasta 20 hipopótamos anuales permite reducir la población hasta alcanzar un valor esperado de cero en 2049, bajo los supuestos del modelo.
+La esterilización de hasta 20 hembras anuales reduce considerablemente el crecimiento, aunque no logra eliminar la población durante el período estudiado, alcanzando aproximadamente 108 individuos en 2050. Por su parte, el escenario hipotético de eutanasia de hasta 20 hipopótamos anuales permite reducir la población hasta alcanzar un valor esperado de cero en 2049, bajo los supuestos del modelo.
 
-El manejo combinado presenta la disminución más rápida, con aproximadamente 121 individuos en 2030, frente a 188 en el escenario de eutanasia. Bajo los supuestos del modelo, alcanza una población esperada de cero en 2036. Sin embargo, estos resultados describen efectos demográficos y no permiten determinar la viabilidad operativa, económica o ética de las intervenciones.
+El manejo combinado presenta la disminución más rápida, con aproximadamente 127 individuos en 2030, frente a 188 en el escenario de eutanasia. Bajo los supuestos del modelo, alcanza una población esperada de cero en 2036. Sin embargo, estos resultados describen efectos demográficos y no permiten determinar la viabilidad operativa, económica o ética de las intervenciones.
 
 
 ## Conclusiones

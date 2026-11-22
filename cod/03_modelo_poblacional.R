@@ -114,7 +114,7 @@ cambio_poblacional_control <- function(poblacion, parametros = tabla_edades){
 
 
 esterilizar_hembras <- function(poblacion, cantidad_anual){
-  hembras_elegibles =filter(poblacion, edad >= 5 & edad <= 30)
+  hembras_elegibles =filter(poblacion, edad >= 3 & edad <= 45)
   total_elegibles = sum(hembras_elegibles$hembras_fertiles)
   esterilizaciones_reales = min(cantidad_anual, total_elegibles)
   if (total_elegibles == 0) {
@@ -123,7 +123,7 @@ esterilizar_hembras <- function(poblacion, cantidad_anual){
   poblacion <- poblacion |> 
     mutate(
     esterilizaciones_por_edad = if_else(
-      edad >= 5 & edad <= 30,
+      edad >= 3 & edad <= 45,
       hembras_fertiles / total_elegibles * esterilizaciones_reales,
       0
     ),
