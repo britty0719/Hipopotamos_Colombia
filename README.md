@@ -17,9 +17,9 @@ Se utiliza un modelo poblacional estructurado por edad y sexo, con una població
 Se consideran cuatro escenarios:
 
 1. **Sin intervención:** crecimiento poblacional sin medidas de control.
-2. **Esterilización:** esterilización de hasta 10 hembras fértiles por año.
-3. **Extracción:** retiro de hasta 30 individuos por año.
-4. **Manejo combinado:** aplicación simultánea de esterilización y extracción.
+2. **Esterilización:** esterilización de hasta 20 hembras fértiles por año.
+3. **Eutanasia:**  aplicación de eutanasia de hasta 20 individuos por año.
+4. **Manejo combinado:** aplicación simultánea de esterilización y eutanasia.
 
 Las proyecciones se realizan hasta el año 2050, bajo los supuestos establecidos en el informe.
 
